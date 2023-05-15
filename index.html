@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Locator App</title>
+  <link rel="stylesheet" href=".css">
+  <link rel="stylesheet" href=".css">
+</head>
+<body>
+  <header>
+    <h1>Food Locator App</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2>Find Nearby Restaurants</h2>
+    <form>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter your location">
+      <label for="cuisine">Cuisine:</label>
+      <select id="cuisine" name="cuisine">
+        <option value="">Select a cuisine</option>
+        <option value="italian">Italian</option>
+        <option value="mexican">Mexican</option>
+        <option value="indian">Indian</option>
+        <option value="japanese">Japanese</option>
+        <option value="british">British</option>
+        <option value="American">American</option>
+
+      </select>
+      <button type="submit">Search</button>
+    </form>
+    <div id="results">
+      <h3>Results</h3>
+      <ul>
+        <li><a href="#">Restaurant 1</a></li>
+        <li><a href="#">Restaurant 2</a></li>
+        <li><a href="#">Restaurant 3</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2023 Food Locator App</p>
+  </footer>
+</body>
+<script src=".js"></script>
+<script src=".js"></script>
+</html>
