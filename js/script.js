@@ -1,11 +1,19 @@
+
+
 let map;
+// initMap is now async
+function initMap() {
 
-async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-  map = new Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
+    var options = {
+        zoom: 8,
+        center: {
+            lat: 51.5072,
+            lng: -0.1276,
+        }
+    }
 
-initMap();
+    map = new google.maps.Map(document.getElementById("map"), options)
+
+};
+
+window.initMap = initMap;
