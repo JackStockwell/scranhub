@@ -1,5 +1,3 @@
-var keyAPI = "AIzaSyD0LvDbL349Bf8FNEras65YzLL6M_p-Cgc"
-
 // Map creation
 let map;
 
