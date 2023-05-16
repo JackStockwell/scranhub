@@ -11,11 +11,12 @@
   <header>
     <h1>Food Locator App</h1>
   </header>
-      <h2>Find Nearby Restaurants</h2>
   <main>
-    <form>
+    <h2>Find Nearby Restaurants</h2>
+    <form onsubmit="newSearch(event)">
       <label for="location">Location:</label>
       <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><br>
+      <p id="error-msg"></p>
       <label for="cuisine">Cuisine:</label>
       <select id="cuisine" name="cuisine">
         <option value="">Select a cuisine</option>
@@ -49,7 +50,7 @@
   </footer>
 
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=key&callback=initMap&v=weekly"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0LvDbL349Bf8FNEras65YzLL6M_p-Cgc&callback=initMap&v=weekly"
     defer>
   </script>
   <script src="./js/script.js"></script>
