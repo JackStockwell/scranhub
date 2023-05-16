@@ -10,19 +10,13 @@
 <body>
   <header>
     <h1>Food Locator App</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </nav>
+    <h2>Find Nearby Restaurants</h2>
+
   </header>
   <main>
-    <h2>Find Nearby Restaurants</h2>
     <form>
       <label for="location">Location:</label>
-      <input type="text" id="location" name="location" placeholder="Enter your location">
+      <input type="text" id="location" name="location" placeholder="Enter your location"><br>
       <label for="cuisine">Cuisine:</label>
       <select id="cuisine" name="cuisine">
         <option value="">Select a cuisine</option>
@@ -31,9 +25,11 @@
         <option value="indian">Indian</option>
         <option value="japanese">Japanese</option>
         <option value="british">British</option>
-        <option value="American">American</option>
+        <option value="american">American</option>
+        <option value="chinese">Chinese</option>
 
-      </select>
+      </select><br>
+    
       <button type="submit">Search</button>
     </form>
     <div id="results">
@@ -42,6 +38,9 @@
         <li><a href="#">Restaurant 1</a></li>
         <li><a href="#">Restaurant 2</a></li>
         <li><a href="#">Restaurant 3</a></li>
+        <li><a href="#">Restaurant 4</a></li>
+        <li><a href="#">Restaurant 5</a></li>
+        <li><a href="#">Restaurant 6</a></li>
       </ul>
     </div>
   </main>
