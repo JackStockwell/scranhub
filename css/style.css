@@ -23,7 +23,8 @@ header h1{
     padding: 25px;
    /* background-color: #cfd144;*/
     background-color: #fdfdfd;
-    color:rgb(88 51 51);
+    /* color:rgb(88 51 51); */
+    color:rgb(187 152 89);
     /* box-shadow: 2px 1px 8px 0px grey; */
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
@@ -53,11 +54,12 @@ form{
 
 label{
     color: black;
+    
 }
 
 input{
     margin-top: 5px;
-    padding: 5px;
+    padding: 3px;
     display: flex;
     flex-direction: column;
     border-radius: 7px;
@@ -73,16 +75,30 @@ input{
     background-color: #f9f6f6cf;
 }
 
+
 button{
-    border: none;
+    /* border: none;
     margin-top: 30px;
     border-radius: 4px;
-    padding: 2.5px;
-    background-color: cadetblue;
+    padding: 2.5px; */
+    background-color: rgb(187 152 89);
+    color: whitesmoke;
+        /* width: 9em;
+        height: 3em; */
+        border-radius: 30em;
+        /* font-size: 15px; */
+        font-family: inherit;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+    height: 23px;           
 }
 
 button:hover{
-    background-color: #1a9c68;
+    background-color: rgb(154, 125, 72);
 
 }
 
@@ -132,11 +148,6 @@ h2{
     width:inherit;
 }
 
-/* label{
-    line-height: normal;
-
-} */
-
 
 
 #results{
@@ -169,9 +180,9 @@ margin-top: 35px;
 #map {
     height: 350px;
     width: 50%;
-    margin-right: 100px;
+    margin-right: 110px;
     margin-top: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
 
