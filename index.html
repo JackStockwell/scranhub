@@ -10,13 +10,13 @@
 <body>
   <header>
     <h1>Food Locator App</h1>
-  </header>
-      
+  </header>      
   <main>
     <form>
       <h2>Find Nearby Restaurants</h2>
       <label for="location">Location:</label>
       <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><br>
+      <p id="error-msg"></p>
       <label for="cuisine">Cuisine:</label>
       <select id="cuisine" name="cuisine">
         <option value="">Select a cuisine</option>
@@ -89,12 +89,16 @@
   <footer>
     <p>2023 Food Locator App</p>
   </footer>
-
-  <script id="map"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0LvDbL349Bf8FNEras65YzLL6M_p-Cgc
-    &callback=initMap&v=weekly"
-    defer>
-  </script>
+  <script src="./js/keys.js"></script>
+  <script>
+    function loadScript() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + keyAPI + "&callback=initMap&v=weekly"
+      document.body.appendChild(script);
+    }
+    window.onload = loadScript;
+    </script>
   <script src="./js/script.js"></script>
 </body>
 
