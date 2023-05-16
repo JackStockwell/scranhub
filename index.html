@@ -48,11 +48,16 @@
   <footer>
     <p>&copy; 2023 Food Locator App</p>
   </footer>
-
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0LvDbL349Bf8FNEras65YzLL6M_p-Cgc&callback=initMap&v=weekly"
-    defer>
-  </script>
+  <script src="./js/keys.js"></script>
+  <script>
+    function loadScript() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + keyAPI + "&callback=initMap&v=weekly"
+      document.body.appendChild(script);
+    }
+    window.onload = loadScript;
+    </script>
   <script src="./js/script.js"></script>
 </body>
 
