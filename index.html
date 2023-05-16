@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food Locator App</title>
-  <link rel="stylesheet" href=".css">
-  <link rel="stylesheet" href=".css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <header>
     <h1>Food Locator App</h1>
-    <h2>Find Nearby Restaurants</h2>
-
   </header>
+      <h2>Find Nearby Restaurants</h2>
   <main>
     <form>
       <label for="location">Location:</label>
@@ -43,11 +42,21 @@
         <li><a href="#">Restaurant 6</a></li>
       </ol>
     </div>
+    <div id="map"></div>
   </main>
   <footer>
     <p>&copy; 2023 Food Locator App</p>
   </footer>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=key&callback=initMap&v=weekly"
+    defer>
+  </script>
+  <script src="./js/script.js"></script>
 </body>
-<script src=".js"></script>
-<script src=".js"></script>
+
+
+
+
+
 </html>
