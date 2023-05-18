@@ -43,24 +43,10 @@ function locationFinder(location) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-
             var location = data.results[0].geometry.location
             setMarker(location, map)
-
         })
 
-}
-
-function setMarker(value, map) {
-    console.log(value)
-    console.log(map)
-    var marker = new google.maps.Marker({
-        postion: value,
-        map: map,
-        title: "example"
-    })
-    console.log(marker)
-    map.panTo(value) 
 }
 
 function setMarker(value) {
@@ -75,11 +61,15 @@ function setMarker(value) {
       title: "Hello World!",
     });
     map.panTo(value);
+    places(myLatLng)
   }
 
 
 function places(input) {
-    var apiURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${input}&key=${keyAPI}`
+    const lat = input.lat
+    const lng = input.lng
+    var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${input.lat}%2C${input.lng}&radius=1500&keyword=restaurant&key=${keyAPI}`
+    console.log(apiURL)
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
