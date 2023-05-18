@@ -30,6 +30,7 @@ header h1{
 
 form{
     display: grid;
+    width: 90%;
     line-height: 30px;
     padding: 3rem;
     padding-bottom: 4rem; 
@@ -37,7 +38,7 @@ form{
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
                -15px -15px 30px #ffffff;
-    max-height: 350px;
+    height: 400px;
 }
 
 label{
@@ -70,7 +71,7 @@ button{
     border-radius: 4px;
     padding: 2.5px; */
     background-color: rgb(187 152 89);
-    color: whitesmoke;
+    color: rgb(222, 222, 222);
         /* width: 9em;
         height: 3em; */
         border-radius: 30em;
@@ -132,7 +133,7 @@ nav ul li a{
 
 .map-search-container {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     align-items: center;
     justify-content: space-around;
     width: 100%;
@@ -150,24 +151,28 @@ h2{
 
 #results-container {
     margin: 1rem 0;
+    background: white
 }
 
 #results-container h3 {
     text-align: center;
     width: 100%;
     padding: 1rem;
+    font-size: 3ch;
     text-transform: uppercase;
+
 }
 
 #results{
-    display: grid;
-    background-color: white; 
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: white;
+    margin: 1rem 2rem;
+    gap: 2rem;
     /* box-shadow: 8px 1px 6px 2px grey;  */
     /* border-radius: 8px;
     text-align: center;
     max-width: 100%;
-    width: auto;
-    height: 300px;
     border-radius: 30px;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
@@ -175,25 +180,16 @@ h2{
     margin-top: 35px; */
 }
 
-div.result-card{
-    display: inline-grid;
-    padding: 30px;
-    background-color: white;
-    border-radius: 20px;
-    margin-inline-start: 40px;
-    margin-bottom: 20px;
+.result-card {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1.5rem;
+    border-radius: 2rem;
     background: #e0e0e0;
- box-shadow: 20px 20px 60px #bebebe,
-               -20px -20px 60px #ffffff;
-               width: auto;
-               max-width: 100%;
-               padding-bottom: 16rem;
-               padding-right: 12rem;
-               padding-left: 70px;
-                transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: inset 0 -3em 3em rgba(232, 225, 225, 0.1),
-                            0 0  0 2px rgb(187 152 89),
-                            0.3em 0.3em 1em rgba(255, 255, 255, 0.3);
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(232, 225, 225, 0.1),
+                0 0  0 2px rgb(187 152 89),
+                0.3em 0.3em 1em rgba(255, 255, 255, 0.3);
                
 
 }
@@ -207,12 +203,11 @@ div.result-card{
 
 .map-contaner {
     height: 100%;
-
 }
 
 #map {
-    height: 350px;
-    width: 70%;
+    height: 400px;
+    width: 90%;
     border-radius: 20px;
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
@@ -244,28 +239,31 @@ footer{
     flex-direction: column;
 }
 
-
-
-
-p{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    
-}
-
 /* MEDIA QUERIES */
 
-@media (max-width: 70em) {
+@media (min-width: 70em) {
     #results {
         display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+    }
+
+    .map-search-container {
+        flex-flow: row wrap;
+    }
+
+    #map {
+        width: 70%;
+    }
+
+    form {
+        width: auto;
     }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     form {
         width: 750px;
-       
     }
-}
+} */
 
