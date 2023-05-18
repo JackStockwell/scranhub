@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,3 +60,108 @@
     <script src="./js/script.js"></script>
   </body>
 </html>
+=======
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Locator App</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Food Locator App</h1>
+  </header>      
+  <main>
+    <!-- Leave New Search in please -->
+    <form onsubmit="newSearch(event)">
+      <h2>Find Nearby Restaurants</h2>
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><br>
+      <p id="error-msg"></p>
+      <label for="cuisine">Cuisine:</label>
+      <select id="cuisine" name="cuisine">
+        <option value="">Select a cuisine</option>
+        <option value="italian">Italian 🇮🇹</option>
+        <option value="indian">Indian 🇮🇳</option>
+        <option value="mexican">Mexican 🇲🇽</option>
+        <option value="japanese">Japanese 🇯🇵</option>
+        <option value="british">British 🇬🇧</option>
+        <option value="american">American 🇺🇸</option>
+        <option value="chinese">Chinese 🇨🇳</option>
+
+      </select><br>
+    
+      <button type="submit" onsubmit="newSearch(event)">Search</button>
+    </form>
+
+    <div id="map"></div>
+    
+    <div id="results">
+      <h3>Results:</h3>
+      
+      <div class="result-card" >
+        <img src="restaurant-image.jpg" alt="Restaurant Image">
+        <h2>Restaurant Name</h2>
+        <p>Address: 123 Main Street, City</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Rating: 4.5/5</p>
+        <a href="#">More Info</a>
+      </div>
+
+      <div class="result-card" >
+        <img src="restaurant-image.jpg" alt="Restaurant Image">
+        <h2>Restaurant Name</h2>
+        <p>Address: 123 Main Street, City</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Rating: 4.5/5</p>
+        <a href="#">More Info</a>
+      </div>
+
+      <div class="result-card" >
+        <img src="restaurant-image.jpg" alt="Restaurant Image">
+        <h2>Restaurant Name</h2>
+        <p>Address: 123 Main Street, City</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Rating: 4.5/5</p>
+        <a href="#">More Info</a>
+      </div>
+
+      <div class="result-card" >
+        <img src="restaurant-image.jpg" alt="Restaurant Image">
+        <h2>Restaurant Name</h2>
+        <p>Address: 123 Main Street, City</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Rating: 4.5/5</p>
+        <a href="#">More Info</a>
+      </div>
+
+      <div class="result-card" >
+        <img src="restaurant-image.jpg" alt="Restaurant Image">
+        <h2>Restaurant Name</h2>
+        <p>Address: 123 Main Street, City</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Rating: 4.5/5</p>
+        <a href="#">More Info</a>
+      </div>
+
+    </div>
+    
+  </main>
+  <footer>
+    <p>2023 Food Locator App</p>
+  </footer>
+  <script src="./js/keys.js"></script>
+  <script>
+    function loadScript() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + keyAPI + "&callback=initMap&v=weekly"
+      document.body.appendChild(script);
+    }
+    window.onload = loadScript;
+    </script>
+  <script src="./js/script.js"></script>
+</body>
+</html>
+>>>>>>> ee86ecd79709a2e67fc81022bfda26c1fd698023

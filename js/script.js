@@ -1,7 +1,5 @@
-var keyAPI = "AIzaSyD0LvDbL349Bf8FNEras65YzLL6M_p-Cgc"
-
 // Map creation
-let map;
+var map;
 
 // Map initialiser
 function initMap() {
@@ -14,8 +12,9 @@ function initMap() {
         }
     }
     map = new google.maps.Map(document.getElementById("map"), options)
-
 };
+
+
 
 var locationElement = document.querySelector('#location')
 
@@ -44,8 +43,38 @@ function locationFinder(location) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            var location = data.results[0].geometry.location
+            setMarker(location, map)
         })
 
 }
 
-window.initMap = initMap;``
+function setMarker(value) {
+    const myLatLng = value;
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: myLatLng,
+    });
+    new google.maps.Marker({
+      position: myLatLng,
+      map,
+      title: "Hello World!",
+    });
+    map.panTo(value);
+    places(myLatLng)
+  }
+
+
+function places(input) {
+    const lat = input.lat
+    const lng = input.lng
+    var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${input.lat}%2C${input.lng}&radius=1500&keyword=restaurant&key=${keyAPI}`
+    console.log(apiURL)
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+}
+
+window.initMap = initMap;
