@@ -1,5 +1,5 @@
 // Map creation
-let map;
+var map;
 
 // Map initialiser
 function initMap() {
@@ -12,8 +12,9 @@ function initMap() {
         }
     }
     map = new google.maps.Map(document.getElementById("map"), options)
-
 };
+
+
 
 var locationElement = document.querySelector('#location')
 
@@ -42,8 +43,48 @@ function locationFinder(location) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
+
+            var location = data.results[0].geometry.location
+            setMarker(location, map)
+
         })
 
 }
 
-window.initMap = initMap;``
+function setMarker(value, map) {
+    console.log(value)
+    console.log(map)
+    var marker = new google.maps.Marker({
+        postion: value,
+        map: map,
+        title: "example"
+    })
+    console.log(marker)
+    map.panTo(value) 
+}
+
+function setMarker(value) {
+    const myLatLng = value;
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: myLatLng,
+    });
+    new google.maps.Marker({
+      position: myLatLng,
+      map,
+      title: "Hello World!",
+    });
+    map.panTo(value);
+  }
+
+
+function places(input) {
+    var apiURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${input}&key=${keyAPI}`
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+}
+
+window.initMap = initMap;

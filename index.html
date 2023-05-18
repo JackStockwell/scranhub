@@ -12,7 +12,8 @@
     <h1>Food Locator App</h1>
   </header>      
   <main>
-    <form>
+    <!-- Leave New Search in please -->
+    <form onsubmit="newSearch(event)">
       <h2>Find Nearby Restaurants</h2>
       <label for="location">Location:</label>
       <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><br>
@@ -30,7 +31,7 @@
 
       </select><br>
     
-      <button type="submit">Search</button>
+      <button type="submit" onsubmit="newSearch(event)">Search</button>
     </form>
 
     <div id="map"></div>
@@ -101,9 +102,4 @@
     </script>
   <script src="./js/script.js"></script>
 </body>
-
-
-
-
-
 </html>
