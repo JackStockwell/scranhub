@@ -29,23 +29,15 @@ header h1{
 }
 
 form{
-     display: grid;
+    display: grid;
     line-height: 30px;
-    margin-right: auto;
-    /* background-color:white; */
-    padding: 28px;
-    padding-left: 50px;
-    padding-right: 50px;
-    /* border-radius: 5px; */
-    padding-bottom: 75px;
-    /* box-shadow: 8px 1px 6px 2px grey; */
-    position: relative; 
-    /* left: -90px; */
-    border-radius: 30px;
+    padding: 3rem;
+    padding-bottom: 4rem; 
+    border-radius: 2rem;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
                -15px -15px 30px #ffffff;
-
+    max-height: 350px;
 }
 
 label{
@@ -128,14 +120,26 @@ nav ul li a{
     text-transform: capitalize;
 }
 
-main{
-    width: 1130px;
-    max-width: 95%;
+/* main {
+    width: 80vw;
+    max-width: 1200px;
     display: flex;
     margin: 0 auto;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+} */
+
+.map-search-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    gap: 2rem;
+
 }
 
 h2{
@@ -144,25 +148,31 @@ h2{
     width:inherit;
 }
 
+#results-container {
+    margin: 1rem 0;
+}
 
+#results-container h3 {
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    text-transform: uppercase;
+}
 
 #results{
-   
-    /* padding: 55px; */
-    padding: 4px;
-    line-height: 20px;
-    /* background-color: white; */
-    /* box-shadow: 8px 1px 6px 2px grey; */
-    border-radius: 8px;
+    display: grid;
+    background-color: white; 
+    /* box-shadow: 8px 1px 6px 2px grey;  */
+    /* border-radius: 8px;
     text-align: center;
     max-width: 100%;
     width: auto;
     height: 300px;
     border-radius: 30px;
-    /* background: #e0e0e0;
+    background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
-               -15px -15px 30px #ffffff; */
-margin-top: 35px;
+               -15px -15px 30px #ffffff; 
+    margin-top: 35px; */
 }
 
 div.result-card{
@@ -188,21 +198,6 @@ div.result-card{
 
 }
 
-
-
-
-
-
-
-
-h3{
-    margin-bottom: 10px;
-    font-size: x-large;
-    display: flex;
-    
-}
-
-
 /* #results:hover{
     transform: translate(0px, 5px);
     -webkit-transform: translate(0px, 5px);
@@ -210,15 +205,17 @@ h3{
 
 } */
 
+.map-contaner {
+    height: 100%;
+
+}
+
 #map {
     height: 350px;
-    width: 50%;
-    margin-right: 110px;
-    margin-top: 30px;
+    width: 70%;
     border-radius: 20px;
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
-
 }
 
 div ul li{
@@ -257,7 +254,13 @@ p{
     
 }
 
+/* MEDIA QUERIES */
 
+@media (max-width: 70em) {
+    #results {
+        display: grid;
+    }
+}
 
 @media (max-width: 480px) {
     form {
