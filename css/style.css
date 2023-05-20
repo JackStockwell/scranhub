@@ -28,6 +28,8 @@ header h1{
 
 }
 
+/* FORM */
+
 form{
     display: grid;
     width: 90%;
@@ -41,21 +43,32 @@ form{
     height: 400px;
 }
 
+#location-div {
+    display: flex;
+    align-items: center;
+}
+
+#location {
+    width: 100%;
+}
+
+.fa-location-crosshairs {
+    margin: 0 0.5rem;
+}
+
 label{
     color: black;
     
 }
 
 input{
-    margin-top: 5px;
+    margin: 5px 0;
     padding: 3px;
     display: flex;
     flex-direction: column;
     border-radius: 7px;
     border: none;
     background-color: #f9f6f6cf;
-    
-
 }
 
 #cuisine{
@@ -164,8 +177,8 @@ h2{
 }
 
 #results{
-    display: flex;
-    flex-flow: column nowrap;
+    display: grid;
+    grid-template-columns: 1fr;
     background-color: white;
     margin: 1rem 2rem;
     gap: 2rem;
@@ -241,11 +254,15 @@ footer{
 
 /* MEDIA QUERIES */
 
-@media (min-width: 70em) {
+@media(min-width: 60em) {
     #results {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 2rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 80em) {
+    #results {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .map-search-container {

@@ -14,17 +14,6 @@ function initMap() {
     map = new google.maps.Map(document.getElementById("map"), options)
 };
 
-// Query Selector for the results tab.
-
-const resultsElement = document.querySelector('#results')
-
-function renderData(data) {
-    const card = 
-    `
-    
-    `
-}
-
 function setMarker(value) {
     const myLatLng = value;
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -53,6 +42,32 @@ function locationFinder(location, tags) {
 
 }
 
+// Query Selector for the results tab.
+
+const resultsElement = document.getElementById('results')
+
+function renderData(data) {
+    
+    const places = data.results.slice(0, 12)
+
+    console.log(places)
+    
+    for (let i = 0; i < places.length; i++) {
+
+        const cardContent = 
+        `
+        <h3>${places[i].name}</h3>
+        <p>Lorem</p>
+        `
+        let newResult = document.createElement('article')
+        newResult.classList.add('result-card')
+        newResult.innerHTML = cardContent
+
+        console.log(resultsElement)
+        resultsElement.appendChild(newResult)
+    }
+}
+
 function places(input, tags) {
     const lat = input.lat
     const lng = input.lng
@@ -64,7 +79,7 @@ function places(input, tags) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            renderData(data)
         })
 }
 
