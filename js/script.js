@@ -47,6 +47,8 @@ function locationFinder(location, tags) {
 const resultsElement = document.getElementById('results')
 
 function renderData(data) {
+
+
     
     const places = data.results.slice(0, 12)
 
@@ -63,9 +65,9 @@ function renderData(data) {
         newResult.classList.add('result-card')
         newResult.innerHTML = cardContent
 
-        console.log(resultsElement)
         resultsElement.appendChild(newResult)
     }
+
 }
 
 function places(input, tags) {
