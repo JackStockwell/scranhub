@@ -18,8 +18,8 @@ function locationMarker(latlng, name) {
     const myLatLng = latlng;
 
     const marker = new google.maps.Marker({
-      position: myLatLng,
-      title: `${name}`,
+    position: myLatLng,
+    title: `${name}`,
     });
 
     const contentInfo = 
@@ -42,8 +42,7 @@ function locationMarker(latlng, name) {
             map,
         })
     })
-
-  }
+}
 
 function locationFinder(location, tags) {
     var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`
@@ -74,12 +73,23 @@ function nearbyPlaces(input, tags) {
         })
 }
 
-function fetchDetails(palceID) {
-    return new Promise(resolve => {
-        const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${placeID}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-        
-        fetch(apiURL)
-    })
+async function fetchDetails(arrayID) {
+
+    try {
+        const result = await Promise.all([
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`)
+        ]);
+        const data = await Promise.all(result.map(response => response.json()))
+        // console.log(data)
+        return data;
+    } catch {
+        throw Error("Failed to load API, please refresh and try again.")
+    }
 }
 
 // Query Selector for the results tab.
@@ -92,36 +102,58 @@ async function renderData(locationObject) {
 
     console.log(locationObject)
 
+    let arrayID = []
+
     const topSix = locationObject.results.slice(0, 6)
-        
-    for (let i = 0; i < topSix.length; i++) {
 
+    for (let i =0; i < topSix.length; i++) {
         let placeID = topSix[i].place_id
-        console.log(placeID)
-
-        const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${placeID}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-
-        fetch(apiURL)
-            .then(response => response.json)
-            .then(data => {
-
-                console.log(data)
-                // const cardContent = 
-        
-                // `
-                // <h3>${places[i].name}</h3>
-                // <p>Lorem</p>
-                // `
-                // let newResult = document.createElement('article')
-                // newResult.classList.add('result-card')
-                // newResult.innerHTML = cardContent
-        
-                // resultsElement.appendChild(newResult)
-        
-                // locationMarker(places[i].geometry.location, data.name)
-            })
-
+        arrayID.push(placeID)
     }
+
+    console.log(arrayID)
+    fetchDetails(arrayID)
+        .then(data => {
+            const results = data
+            console.log(results)
+        })
+        
+    
+
+
+
+
+       
+    // for (let i = 0; i < topSix.length; i++) {
+
+    //     let placeID = topSix[i].place_id
+
+
+    //     console.log(placeID)
+
+    //     const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${placeID}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
+
+    //     fetch(apiURL)
+    //         .then(response => response.json)
+    //         .then(data => {
+
+    //             console.log(data)
+    //             // const cardContent = 
+        
+    //             // `
+    //             // <h3>${places[i].name}</h3>
+    //             // <p>Lorem</p>
+    //             // `
+    //             // let newResult = document.createElement('article')
+    //             // newResult.classList.add('result-card')
+    //             // newResult.innerHTML = cardContent
+        
+    //             // resultsElement.appendChild(newResult)
+        
+    //             // locationMarker(places[i].geometry.location, data.name)
+    //         })
+
+    // }
     console.log(resultsElement)
 }
 
