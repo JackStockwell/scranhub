@@ -1,20 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Foldit&family=Nova+Square&family=Nunito:wght@200;300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Foldit&family=Nova+Square&family=Nunito:wght@200;300;400;500&display=swap'); */
 
+  /* @import url('https://fonts.googleapis.com/css2?family=Literata:wght@500&display=swap'); */
+
+  /* @import url('https://fonts.googleapis.com/css2?family=Arapey&display=swap'); */
+  
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500&display=swap');
 
 body{
     font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 16px;
     background-color: #c1c1c152;
+    background-image: url('./food\ background.jpeg');
+    background-size:cover;
+    background-repeat: repeat;
+    background-position: center;
     
 }
 
  *{
     font-family: 'Nunito', sans-serif;
+    /* font-family: 'Literata', serif; */
 
  }
 
 
 header h1{
+    /* font-family: 'Literata', serif; */
+    /* font-family: 'Arapey', serif; */
+    font-family: 'Noto Serif Bengali', serif;
     font-size: 40px;
     text-align: center;
     /*margin-top: 10px;*/
@@ -68,6 +81,7 @@ input{
     
 
 }
+
 
 #cuisine{
     border-radius: 5px;
@@ -209,6 +223,7 @@ h3{
     box-shadow: 0px 1px 0px 0px;
 
 } */
+
 
 #map {
     height: 350px;
