@@ -9,12 +9,7 @@
 body{
     font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 16px;
-    background-color: #c1c1c152;
-    background-image: url('./food\ background.jpeg');
-    background-size:cover;
-    background-repeat: repeat;
-    background-position: center;
-    
+    background-color: #c1c1c152;   
 }
 
  *{
@@ -170,7 +165,7 @@ nav ul li a{
     max-width: 1400px;
     margin: 2rem auto;
     gap: 2rem;
-
+    background: url('./food\ background.jpeg') no-repeat center fixed cover;
 }
 
 h2{
