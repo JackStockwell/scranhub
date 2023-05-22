@@ -50,7 +50,6 @@ function locationFinder(location, tags) {
     fetch(apiURL)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             var location = data.results[0].geometry.location
             locationMarker(location, map)
             map.panTo(location);
@@ -77,12 +76,12 @@ async function fetchDetails(arrayID) {
 
     try {
         const result = await Promise.all([
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`)
         ]);
         const data = await Promise.all(result.map(response => response.json()))
         // console.log(data)
@@ -106,7 +105,7 @@ async function renderData(locationObject) {
 
     const topSix = locationObject.results.slice(0, 6)
 
-    for (let i =0; i < topSix.length; i++) {
+    for (let i = 0; i < topSix.length; i++) {
         let placeID = topSix[i].place_id
         arrayID.push(placeID)
     }
@@ -114,8 +113,31 @@ async function renderData(locationObject) {
     console.log(arrayID)
     fetchDetails(arrayID)
         .then(data => {
+            // Local places infomation.
             const results = data
             console.log(results)
+
+            for (x = 0; x < results.length; x++) {
+                locationMarker(results[x].result.geometry.location, results[x].result.name)
+
+                const cardContent =
+        
+                `
+                <h3>${results[x].result.name}</h3>
+                <p>${results[x].result.editorial_summary.overview}</p>
+
+
+
+
+                `
+
+                let newResult = document.createElement('article')
+                newResult.classList.add('result-card')
+                newResult.innerHTML = cardContent
+        
+                resultsElement.appendChild(newResult)
+        
+            }
         })
         
     
@@ -138,20 +160,20 @@ async function renderData(locationObject) {
     //         .then(data => {
 
     //             console.log(data)
-    //             // const cardContent = 
+    //             const cardContent = 
         
-    //             // `
-    //             // <h3>${places[i].name}</h3>
-    //             // <p>Lorem</p>
-    //             // `
-    //             // let newResult = document.createElement('article')
-    //             // newResult.classList.add('result-card')
-    //             // newResult.innerHTML = cardContent
+    //             `
+    //             <h3>${places[i].name}</h3>
+    //             <p>Lorem</p>
+    //             `
+    //             let newResult = document.createElement('article')
+    //             newResult.classList.add('result-card')
+    //             newResult.innerHTML = cardContent
         
-    //             // resultsElement.appendChild(newResult)
+    //             resultsElement.appendChild(newResult)
         
-    //             // locationMarker(places[i].geometry.location, data.name)
-    //         })
+    //             locationMarker(places[i].geometry.location, data.name)
+    // //         })
 
     // }
     console.log(resultsElement)
