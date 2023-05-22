@@ -1,5 +1,6 @@
 // Map creation
 let map;
+let arrayID = []
 
 // Map initialiser
 function initMap() {
@@ -126,24 +127,23 @@ async function renderData(locationObject) {
                 <h3>${results[x].result.name}</h3>
                 <p>${results[x].result.editorial_summary.overview}</p>
 
-
+                 
 
 
                 `
-
+              
                 let newResult = document.createElement('article')
                 newResult.classList.add('result-card')
                 newResult.innerHTML = cardContent
         
                 resultsElement.appendChild(newResult)
         
-            }
-        })
+            
+        }})
         
     
 
-
-
+      
 
        
     // for (let i = 0; i < topSix.length; i++) {
@@ -177,6 +177,26 @@ async function renderData(locationObject) {
 
     // }
     console.log(resultsElement)
+}
+
+// fUNCTION working on local storage
+const storedResults = JSON.parse(localStorage.getItem('recentResults'));
+
+if (storedResults != null) {
+  arrayID.push(...storedResults)
+}
+
+function saveRecentResults(location) {
+
+    const location = locationElement.value
+    const index = searchedLocations.indexOf(location)
+
+    if (index === -1) {
+      arrayID.push(location);
+
+      localStorage.setItem('recentResults' , JSON.stringify(arrayID));
+    }
+
 }
 
 // Query Selectors
