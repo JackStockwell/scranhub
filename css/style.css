@@ -46,7 +46,7 @@ header h1{
 
 }
 
-span {
+.header-span {
     color: var(--primary);
     margin-left: 2px;
     padding: 4px;
