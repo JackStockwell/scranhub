@@ -77,12 +77,12 @@ async function fetchDetails(arrayID) {
 
     try {
         const result = await Promise.all([
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`),
-            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`)
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`)
         ]);
         const data = await Promise.all(result.map(response => response.json()))
         // console.log(data)
@@ -91,6 +91,7 @@ async function fetchDetails(arrayID) {
         throw Error("Failed to load API, please refresh and try again.")
     }
 }
+
 
 // Query Selector for the results tab.
 
@@ -183,6 +184,18 @@ async function renderData(locationObject) {
 // Query Selectors
 const locationElement = document.querySelector('#location')
 const keywordsElement = document.querySelector('#cuisine')
+
+function locationGet(event) {
+    event.preventDefault()
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((data) => {
+            console.log(data)
+            locationElement.value = `${data.coords.latitude} ${data.coords.longitude} `
+        })
+    } else {
+
+    }
+}
 
 function locationSearch(event) {
     event.preventDefault()
