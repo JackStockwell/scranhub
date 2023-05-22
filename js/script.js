@@ -121,7 +121,7 @@ async function renderData(locationObject) {
                 locationMarker(results[x].result.geometry.location, results[x].result.name)
 
                 const cardContent =
-        
+                       
                 `
                 <h3>${results[x].result.name}</h3>
                 <p>${results[x].result.editorial_summary.overview}</p>
