@@ -187,18 +187,23 @@ h2{
 
 #results-container {
     margin: 1rem 0;
-    background: white
+    background: white;
     
 }
 
 #results-container h3 {
     text-align: center;
     width: 100%;
-    padding: 1rem;
+    padding: 1.4rem;
     font-size: 3ch;
     text-transform: uppercase;
-    color: rgb(73, 139, 103);
+    color: green;
+    box-shadow: 15px 15px 30px #bebebe,
+    -15px -15px 30px #ffffff;
 
+}
+i.fa-solid.fa-map-pin{
+    margin-left: 10px;
 }
 
 #results{
