@@ -122,7 +122,7 @@ async function renderData(locationObject) {
 
                 `
                 <h3>${results[x].result.name}</h3>
-                <p>${results[x].result.editorial_summary.overview}</p>
+                <p></p>
 
 
 
@@ -137,50 +137,8 @@ async function renderData(locationObject) {
         
             }
         })
-  
-// for (let i = 0; i < topSix.length; i++) {
-
-//     let placeID = topSix[i].place_id
-
-//     console.log(placeID)
-
-//     const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${placeID}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-
-//     fetch(apiURL)
-//         .then(response => response.json)
-//         .then(data => {
-
-//             console.log(data)
-//             // const cardContent =
-
-//             // `
-//             // <h3>${places[i].name}</h3>
-//             // <p>Lorem</p>
-//             // `
-//             // let newResult = document.createElement('article')
-//             // newResult.classList.add('result-card')
-//             // newResult.innerHTML = cardContent
-
-//             // resultsElement.appendChild(newResult)
-
-    //             console.log(data)
-    //             const cardContent = 
-        
-    //             `
-    //             <h3>${places[i].name}</h3>
-    //             <p>Lorem</p>
-    //             `
-    //             let newResult = document.createElement('article')
-    //             newResult.classList.add('result-card')
-    //             newResult.innerHTML = cardContent
-        
-    //             resultsElement.appendChild(newResult)
-        
-    //             locationMarker(places[i].geometry.location, data.name)
-    // //         })
-
-// }
-console.log(resultsElement);
+    console.log(resultsElement)
+}
 
 // Query Selectors
 const locationElement = document.querySelector("#location");
