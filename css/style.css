@@ -267,8 +267,6 @@ div ul li a:hover{
     transform: translate(0px, 4px);
 }
 
-
-
 footer{
     display: flex;
     flex-direction: column;
@@ -288,7 +286,7 @@ footer{
     }
 
     .map-search-container {
-        flex-flow: row wrap;
+        flex-flow: row nowrap;
     }
 
     #map {
