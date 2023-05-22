@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>ScranHub</title>
-
-    <title>Food Locator App</title>
-    <script
-      src="https://kit.fontawesome.com/d9306d9c98.js"
-      crossorigin="anonymous"
-    </script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScranHub</title>
+  <script
+    src="https://kit.fontawesome.com/d9306d9c98.js"
+    crossorigin="anonymous"
+  </script>
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <header>
-    <h1>Scran<span>Hub</span></h1>
+    <h1>Scran<span class="header-span">Hub</span></h1>
   </header>      
   <main>
     <section class="map-search-container">
@@ -25,7 +22,7 @@
         <h2>Find Nearby Restaurants</h2>
         <label for="location">Location:</label>
         <div id="location-div">
-          <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><i class="fa-solid fa-location-crosshairs"></i><br>
+          <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><i class="fa-solid fa-location-crosshairs" onclick="locationGet(event)"></i><br>
         </div>
         <p id="error-msg"></p>
         <label for="cuisine">Cuisine:</label>

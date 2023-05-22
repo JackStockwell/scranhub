@@ -6,41 +6,53 @@
   
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500&display=swap');
 
-body{
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --greendark: #469469;
+    --greenlight: #27b367;
+    --primary: #3c6e71;
+    --smokeshade: #bebebe;
+}
+
+body {
     font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 16px;
     background-color: #c1c1c152;   
 }
 
- *{
-    font-family: 'Nunito', sans-serif;
-    /* font-family: 'Literata', serif; */
-
- }
-
-
-header h1{
-    /* font-family: 'Literata', serif; */
-    /* font-family: 'Arapey', serif; */
-    font-family: 'Noto Serif Bengali', serif;
-    font-size: 40px;
-    text-align: center;
-    /*margin-top: 10px;*/
-    padding: 25px;
-   /* background-color: #cfd144;*/
-    background-color: #fdfdfd;
-    /* color:rgb(88 51 51); */
-    /* color:rgb(187 152 89); */
-    color:rgb(39 179 103);
-    /* box-shadow: 2px 1px 8px 0px grey; */
-    box-shadow: 15px 15px 30px #bebebe,
+header {
+    width: 100vw;
+    padding: 2rem;
+    background-color: var(--primary);
+    box-shadow: 15px 15px 30px var(--smokeshade),
     -15px -15px 30px #ffffff;
 
 }
 
-span{
-    color: green;
+header h1{
     font-family: 'Noto Serif Bengali', serif;
+    font-size: 40px;
+    text-align: center;
+    color:rgb(39 179 103);
+    /* box-shadow: 15px 15px 30px #bebebe,
+    -15px -15px 30px #ffffff; */
+
+}
+
+.header-span {
+    color: var(--primary);
+    margin-left: 2px;
+    padding: 4px;
+    border: 2px solid var(--greenlight);
+    border-radius: 7px;
+    background: var(--greenlight);
 }
 
 /* FORM */
@@ -53,7 +65,7 @@ form{
     padding-bottom: 4rem; 
     border-radius: 2rem;
     background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
+    box-shadow: 15px 15px 30px var(--smokeshade),
                -15px -15px 30px #ffffff;
     height: 400px;
 }
@@ -69,6 +81,7 @@ form{
 
 .fa-location-crosshairs {
     margin: 0 0.5rem;
+    cursor: pointer;
 }
 
 label{
@@ -95,31 +108,19 @@ input{
 
 
 button{
-    /* border: none;
-    margin-top: 30px;
-    border-radius: 4px;
-    padding: 2.5px; */
-    /* background-color: rgb(187 152 89); */
     background-color: rgb(70, 148, 105);
     color: rgb(254, 254, 254);
-        /* width: 9em;
-        height: 3em; */
-        border-radius: 30em;
-        /* font-size: 15px; */
-        font-family: inherit;
-        border: none;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-    box-shadow: 6px 6px 12px #c5c5c5,
-             -6px -6px 12px #ffffff;
-    height: 23px;           
+    border-radius: 30em;
+    padding: 0.5rem;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    box-shadow: 6px 6px 12px var(--smokeshade),
+             -6px -6px 12px #ffffff;           
 }
 
 button:hover{
-    /* background-color: rgb(154, 125, 72); */
     background-color: rgb(39 179 103);
-
 }
 
 button:active{
@@ -243,7 +244,7 @@ h2{
     height: 400px;
     width: 90%;
     border-radius: 20px;
-    box-shadow: 15px 15px 30px #bebebe,
+    box-shadow: 15px 15px 30px var(--smokeshade),
     -15px -15px 30px #ffffff;
 }
 
