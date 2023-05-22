@@ -122,7 +122,7 @@ async function renderData(locationObject) {
 
                 `
                 <h3>${results[x].result.name}</h3>
-                <p>${results[x].result.editorial_summary.overview}</p>
+                <p></p>
 
 
 
