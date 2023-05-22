@@ -49,11 +49,17 @@ function locationFinder(location, tags) {
   fetch(apiURL)
       .then(response => response.json())
       .then(data => {
-          var location = data.results[0].geometry.location
-          locationMarker(location, map)
-          map.panTo(location);
-          nearbyPlaces(location, tags)
-      })
+
+        if (data.status !== "OK") {
+            return;
+        } else {
+            console.log(data)
+            var location = data.results[0].geometry.location
+            var address = data.results[0].formatted_address
+            locationMarker(location, address)
+            map.panTo(location);
+            nearbyPlaces(location, tags)
+        }})
 }
 
 function nearbyPlaces(input, tags) {
