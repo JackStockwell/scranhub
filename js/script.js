@@ -117,12 +117,17 @@ async function renderData(locationObject) {
     const place = topSix[i];
     const cardContent = `
         <h1>${place.name}</h1>
-         <p>${place.vicinity}</p>
+        <p>${place.vicinity}</p>
+        <p>Price Level: ${place.price_level || "N/A"}</p>
+        <p>Rating: ${place.rating || "N/A"}</p>
+        <a href="${place.website}" target="_blank">Website</a>
       `;
     let newResult = document.createElement("article");
     newResult.classList.add("result-card");
     newResult.innerHTML = cardContent;
     resultsElement.appendChild(newResult);
+
+    arrayID.push(place.place_id);
   }
 
   console.log(arrayID);
