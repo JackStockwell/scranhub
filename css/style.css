@@ -1,71 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Foldit&family=Nova+Square&family=Nunito:wght@200;300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Foldit&family=Nova+Square&family=Nunito:wght@200;300;400;500&display=swap'); */
 
+  /* @import url('https://fonts.googleapis.com/css2?family=Literata:wght@500&display=swap'); */
+
+  /* @import url('https://fonts.googleapis.com/css2?family=Arapey&display=swap'); */
+  
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500&display=swap');
 
 body{
     font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 16px;
-    background-color: #c1c1c152;
+    background-color: #c1c1c152;   
 }
+
  *{
     font-family: 'Nunito', sans-serif;
+    /* font-family: 'Literata', serif; */
 
  }
 
-/* header{
-   
-
-} */
 
 header h1{
+    /* font-family: 'Literata', serif; */
+    /* font-family: 'Arapey', serif; */
+    font-family: 'Noto Serif Bengali', serif;
     font-size: 40px;
     text-align: center;
     /*margin-top: 10px;*/
     padding: 25px;
    /* background-color: #cfd144;*/
     background-color: #fdfdfd;
-    color:rgb(88 51 51);
+    /* color:rgb(88 51 51); */
+    color:rgb(187 152 89);
     /* box-shadow: 2px 1px 8px 0px grey; */
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
+   
     
 
-}
+} 
+
+/* FORM */
 
 form{
-     display: grid;
+    display: grid;
+    width: 90%;
     line-height: 30px;
-    margin-right: auto;
-    /* background-color:white; */
-    padding: 28px;
-    padding-left: 50px;
-    padding-right: 50px;
-    /* border-radius: 5px; */
-    padding-bottom: 75px;
-    /* box-shadow: 8px 1px 6px 2px grey; */
-    position: relative; 
-    /* left: -90px; */
-    border-radius: 30px;
+    padding: 3rem;
+    padding-bottom: 4rem; 
+    border-radius: 2rem;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
                -15px -15px 30px #ffffff;
+    height: 400px;
+}
 
+#location-div {
+    display: flex;
+    align-items: center;
+}
+
+#location {
+    width: 100%;
+}
+
+.fa-location-crosshairs {
+    margin: 0 0.5rem;
 }
 
 label{
     color: black;
+    
 }
 
 input{
-    margin-top: 5px;
-    padding: 5px;
+    margin: 5px 0;
+    padding: 3px;
     display: flex;
     flex-direction: column;
     border-radius: 7px;
     border: none;
     background-color: #f9f6f6cf;
-    
-
 }
+
 
 #cuisine{
     border-radius: 5px;
@@ -73,16 +89,30 @@ input{
     background-color: #f9f6f6cf;
 }
 
+
 button{
-    border: none;
+    /* border: none;
     margin-top: 30px;
     border-radius: 4px;
-    padding: 2.5px;
-    background-color: cadetblue;
+    padding: 2.5px; */
+    background-color: rgb(187 152 89);
+    color: rgb(222, 222, 222);
+        /* width: 9em;
+        height: 3em; */
+        border-radius: 30em;
+        /* font-size: 15px; */
+        font-family: inherit;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+    height: 23px;           
 }
 
 button:hover{
-    background-color: #1a9c68;
+    background-color: rgb(154, 125, 72);
 
 }
 
@@ -116,14 +146,26 @@ nav ul li a{
     text-transform: capitalize;
 }
 
-main{
-    width: 1130px;
-    max-width: 95%;
+/* main {
+    width: 80vw;
+    max-width: 1200px;
     display: flex;
     margin: 0 auto;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+} */
+
+.map-search-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    gap: 2rem;
+    background: url('./food\ background.jpeg') no-repeat center fixed cover;
 }
 
 h2{
@@ -132,32 +174,50 @@ h2{
     width:inherit;
 }
 
-/* label{
-    line-height: normal;
+#results-container {
+    margin: 1rem 0;
+    background: white
+}
 
-} */
+#results-container h3 {
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    font-size: 3ch;
+    text-transform: uppercase;
 
-
+}
 
 #results{
-   
-    padding: 55px;
-    line-height: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
     background-color: white;
-    /* box-shadow: 8px 1px 6px 2px grey; */
-    border-radius: 8px;
+    margin: 1rem 2rem;
+    gap: 2rem;
+    /* box-shadow: 8px 1px 6px 2px grey;  */
+    /* border-radius: 8px;
     text-align: center;
     max-width: 100%;
-    width: auto;
-    height: 300px;
     border-radius: 30px;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
-               -15px -15px 30px #ffffff;
-margin-top: 35px;
+               -15px -15px 30px #ffffff; 
+    margin-top: 35px; */
 }
 
+.result-card {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    background: #e0e0e0;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: inset 0 -3em 3em rgba(232, 225, 225, 0.1),
+                0 0  0 2px rgb(187 152 89),
+                0.3em 0.3em 1em rgba(255, 255, 255, 0.3);
+               
 
+}
 
 /* #results:hover{
     transform: translate(0px, 5px);
@@ -166,15 +226,17 @@ margin-top: 35px;
 
 } */
 
+
+.map-contaner {
+    height: 100%;
+}
+
 #map {
-    height: 350px;
-    width: 50%;
-    margin-right: 100px;
-    margin-top: 30px;
-    border-radius: 10px;
+    height: 400px;
+    width: 90%;
+    border-radius: 20px;
     box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff;
-
 }
 
 div ul li{
@@ -203,22 +265,35 @@ footer{
     flex-direction: column;
 }
 
+/* MEDIA QUERIES */
 
-
-
-p{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    
-}
-
-
-
-@media (max-width: 480px) {
-    form {
-        width: 750px;
-       
+@media(min-width: 60em) {
+    #results {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
+
+@media (min-width: 80em) {
+    #results {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .map-search-container {
+        flex-flow: row wrap;
+    }
+
+    #map {
+        width: 70%;
+    }
+
+    form {
+        width: auto;
+    }
+}
+
+/* @media (max-width: 480px) {
+    form {
+        width: 750px;
+    }
+} */
 
