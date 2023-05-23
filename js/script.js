@@ -192,6 +192,15 @@ async function renderData(locationObject) {
           newResult.classList.add('result-card');
           newResult.innerHTML = cardContent;
 
+          // To add the results and display it with text
+          var resultList = document.querySelector(".result-list");
+          var listElement = document.createElement('li');
+
+          listElement.textContent = place.name;
+          resultList.appendChild(listElement)
+          
+
+
           resultsElement.appendChild(newResult);
       }
 
