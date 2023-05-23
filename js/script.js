@@ -104,7 +104,6 @@ function nearbyPlaces(recentSearchObj) {
   // Stores updated results in local storage
   localStorage.setItem('recentResults', JSON.stringify(recentResults))
   // Refreshes the list.
-  renderList();
 
   var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${recentSearchObj.coord.lat}%2C${recentSearchObj.coord.lng}&maxprice=${recentSearchObj.max}&minprice=${recentSearchObj.min}&radius=${recentSearchObj.radius}&keyword=${recentSearchObj.tags}&key=${keyAPI}`;
   console.log(apiURL);
@@ -242,9 +241,6 @@ function loadRecentSearches() {
   } else {
     return;
   }
-
-  renderList();
-
 }
 
 //Query Selector for result list
@@ -252,12 +248,13 @@ const resultList = document.querySelector(".result-list");
 
 // Renders the list in HTML
 function renderList() {
+  // Loads the recentResults from localstorage.
+  loadRecentSearches()
   // Clears the list.
   resultList.innerHTML =""
-
   // Gets the latest result from the array.
   let recentValue = recentResults.splice(-1)
-
+  console.log(recentValue)
   // To add the results and display it with text
   const listElement = document.createElement('li');
   const name = recentValue[0].name
@@ -293,7 +290,7 @@ function locationGet(event) {
     }
 }
 
-// Slider
+// Slider attributes, automatically updates the value on the page.
 
 const output = document.querySelector(".range-update");
 
@@ -302,15 +299,16 @@ output.innerHTML = radiusElement.value
 radiusElement.oninput = function() {
   output.innerHTML = this.value
 }
-
 output.innerHTML = `${radiusElement.value}m`;
 
 // Grabs the location specified to ensuring all fields have been inputted 
 function locationSearch(event) {
   event.preventDefault();
+  // Renders the list.
+  renderList()
   // Reloads the map.
   initMap();
-
+  // Retrieves the values needed to conduct the search.
   const location = locationElement.value;
   const tags = keywordsElement.value;
   const radius = radiusElement.value;
@@ -318,7 +316,7 @@ function locationSearch(event) {
   const maxPrice = maxPriceElement.value;
 
   console.log(radius);
-  if (!location || !tags || !radius) {
+  if (!location || !tags) {
     invalidPara.innerHTML = "Please enter a location or search term!";
     setTimeout(() => {
       invalidPara.innerHTML = "";
@@ -328,4 +326,4 @@ function locationSearch(event) {
   }
 }
 
-loadRecentSearches();
+renderList();
