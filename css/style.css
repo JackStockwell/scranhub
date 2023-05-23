@@ -163,16 +163,23 @@ nav ul li a{
     flex-wrap: wrap;
 } */
 
+.background-wrapper {
+    background: center / cover no-repeat url(../assets/background/foodbackground.jpeg);
+    width: 100%;
+}
+
 .map-search-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    padding: 2rem;
     max-width: 1400px;
-    margin: 2rem auto;
+    margin: 0 auto;
     gap: 2rem;
-    background: url('./food\ background.jpeg') no-repeat center fixed cover;
+    background: transparent;
+    /* background: center / cover no-repeat url(../assets/background/foodbackground.jpeg); */
 }
 
 h2{
@@ -182,7 +189,7 @@ h2{
 }
 
 #results-container {
-    margin: 1rem 0;
+    padding: 0 0 2rem 0;
     background: white;
     
 }
@@ -205,18 +212,9 @@ i.fa-solid.fa-map-pin{
 #results{
     display: grid;
     grid-template-columns: 1fr;
-    background-color: white;
-    margin: 1rem 2rem;
+    padding: 3rem 3rem;
     gap: 2rem;
-    /* box-shadow: 8px 1px 6px 2px grey;  */
-    /* border-radius: 8px;
-    text-align: center;
-    max-width: 100%;
-    border-radius: 30px;
-    background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
-               -15px -15px 30px #ffffff; 
-    margin-top: 35px; */
+
 }
 
 .result-card {
@@ -246,7 +244,7 @@ i.fa-solid.fa-map-pin{
 }
 
 #map {
-    height: 400px;
+    height: 500px;
     width: 90%;
     border-radius: 20px;
     box-shadow: 15px 15px 30px var(--smokeshade),
@@ -282,13 +280,13 @@ footer{
 @media(min-width: 60em) {
     #results {
         grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media (min-width: 80em) {
-    #results {
-        grid-template-columns: repeat(4, 1fr);
-    }
 
     .map-search-container {
         flex-flow: row nowrap;
