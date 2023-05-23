@@ -121,20 +121,19 @@ async function fetchDetails(arrayID) {
 const resultsElement = document.getElementById("results");
 
 async function renderData(locationObject) {
-
   // Clears previous cards if there are any.
-    resultsElement.innerHTML = ""
+  resultsElement.innerHTML = "";
 
-    console.log(locationObject)
+  console.log(locationObject);
 
-    const arrayID = []
+  const arrayID = [];
 
-    const slicedResults = locationObject.results.slice(0, 9)
+  const slicedResults = locationObject.results.slice(0, 9);
 
-    for (let i = 0; i < slicedResults.length; i++) {
-        let placeID = slicedResults[i].place_id
-        arrayID.push(placeID)
-    }
+  for (let i = 0; i < slicedResults.length; i++) {
+    let placeID = slicedResults[i].place_id;
+    arrayID.push(placeID);
+  }
 
     function renderPrice(price) {
 
@@ -159,10 +158,11 @@ async function renderData(locationObject) {
         const results = data
         console.log(results);
 
-        for (x = 0; x < results.length; x++) {
-          const resultObj = results[x].result
-          // console.log(resultObj)
-          locationMarker(resultObj);
+      const storedResults = JSON.parse(localStorage.getItem('recentResults')) || []; // This allows to get the results and store it within local storage
+
+      for (let x = 0; x < results.length; x++) {
+        const place = results[x].result;
+        locationMarker(place);
         const cardContent =
           `
           <h3>${resultObj.name}</h3>
@@ -181,33 +181,19 @@ async function renderData(locationObject) {
           </div>
           `
 
-          let newResult = document.createElement('article')
-          newResult.classList.add('result-card')
-          newResult.innerHTML = cardContent
+          storedResults.push(place); // Added current place where user has searched and added it to local storage
 
-          resultsElement.appendChild(newResult)    
+          let newResult = document.createElement('article');
+          newResult.classList.add('result-card');
+          newResult.innerHTML = cardContent;
+
+          resultsElement.appendChild(newResult);
       }
-    })
+
+      localStorage.setItem('recentResults', JSON.stringify(storedResults)); // Stores updated results in local storage
+    });
 }
 
-// fUNCTION working on local storage
-const storedResults = JSON.parse(localStorage.getItem('recentResults'));
-
-if (storedResults != null) {
-  arrayID.push(...storedResults)
-}
-
-function saveRecentResults(location) {
-
-    const locationValue = locationElement.value
-    const index = searchedLocations.indexOf(location)
-
-    if (index === -1) {
-      arrayID.push(location);
-      localStorage.setItem('recentResults' , JSON.stringify(arrayID));
-    }
-
-}
 
 // Query Selectors
 const locationElement = document.querySelector("#location");
