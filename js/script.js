@@ -51,7 +51,6 @@ function locationMarker(placeObj) {
   });
 }
 
-
 function locationFinder(location, tags, radius, min, max) {
   var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
   console.log(apiURL);
@@ -236,6 +235,9 @@ output.innerHTML = `${radiusElement.value}m`;
 // Grabs the location specified to ensuring all fields have been inputted 
 function locationSearch(event) {
   event.preventDefault();
+  // Reloads the map.
+  initMap();
+
   const location = locationElement.value;
   const tags = keywordsElement.value;
   const radius = radiusElement.value;
@@ -252,7 +254,3 @@ function locationSearch(event) {
     locationFinder(location, tags, radius, minPrice, maxPrice);
   }
 }
-
-
-
-window.initMap = initMap;
