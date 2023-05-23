@@ -94,7 +94,7 @@ async function fetchDetails(arrayID) {
 
   try {
     for (let i = 0; i < arrayID.length; i++) {
-      const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[i]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`
+      const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[i]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,place_id,opening_hours&key=${keyAPI}`
     
       requests.push(
         new Promise((resolve, reject) => {
@@ -135,27 +135,53 @@ async function renderData(locationObject) {
     arrayID.push(placeID);
   }
 
-  fetchDetails(arrayID)
-    .then(data => {
-      // Local places information.
-      const results = data;
-      console.log(results);
+    function renderPrice(price) {
+
+      console.log(price)
+
+      let star = "&#9733 "
+
+      for (let i = 0; i <= 5; i++) {
+        if (i === price) {
+          star = star.repeat(i)
+          return star;
+        }
+      }
+    }
+
+    console.log(renderPrice(3))
+
+
+    fetchDetails(arrayID)
+      .then(data => {
+        // Local places infomation.
+        const results = data
+        console.log(results);
 
       const storedResults = JSON.parse(localStorage.getItem('recentResults')) || []; // This allows to get the results and store it within local storage
 
       for (let x = 0; x < results.length; x++) {
-        const place = results[x].result;
-        locationMarker(place);
+        const resultObj = results[x].result;
+        locationMarker(resultObj);
         const cardContent =
           `
-          <h3>${place.name}</h3>
-          <p>${place.vicinity}</p>
-          <p>Price Level: ${place.price_level || "N/A"}</p>
-          <p>Rating: ${place.rating || "N/A"}</p>
-          <a href="${place.website}" target="_blank">Website</a>
-         `
+          <h3>${resultObj.name}</h3>
+          <div class="result-content">
+            <img class="result-img" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${resultObj.photos[0].photo_reference}&key=${keyAPI}">
+            <div class="result-content-info">
+              <a href="https://www.google.com/maps/dir/?api=1&origin=${locationElement.value}&destination=${resultObj.formatted_address}&destination_place_id=${resultObj.place_id}" target="_blank">Directions <i class="fa-solid fa-route"></i></a>
+              <a href="${resultObj.website}" target="_blank">Website <i class="fa-solid fa-globe"></i></a>
+              <p>Price Level: ${resultObj.price_level || "N/A"}</p>
+              <p>Rating: ${resultObj.rating || "N/A"}</p>
+              <div class="result-review">
+                <p>${resultObj.reviews[0].text}</p>
+                <i>- ${resultObj.reviews[0].author_name} ${(renderPrice(resultObj.reviews[0].rating))}</i> 
+              </div>
+              </div>
+          </div>
+          `
 
-          storedResults.push(place); // Added current place where user has searched and added it to local storage
+          storedResults.push(resultObj); // Added current place where user has searched and added it to local storage
 
           let newResult = document.createElement('article');
           newResult.classList.add('result-card');
