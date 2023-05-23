@@ -135,22 +135,29 @@ async function renderData(locationObject) {
     arrayID.push(placeID);
   }
 
-    function renderPrice(price) {
-
-      console.log(price)
+    function renderRating(rate) {
 
       let star = "&#9733 "
 
       for (let i = 0; i <= 5; i++) {
-        if (i === price) {
+        if (i === rate) {
           star = star.repeat(i)
           return star;
         }
       }
     }
 
-    console.log(renderPrice(3))
+    function renderPrice(price) {
 
+      let pound = "&pound "
+
+      for (let i = 0; i <= 4; i++) {
+        if (i === price) {
+          pound = pound.repeat(i)
+          return pound;
+        }
+      }
+    }
 
     fetchDetails(arrayID)
       .then(data => {
@@ -171,11 +178,11 @@ async function renderData(locationObject) {
             <div class="result-content-info">
               <a href="https://www.google.com/maps/dir/?api=1&origin=${locationElement.value}&destination=${resultObj.formatted_address}&destination_place_id=${resultObj.place_id}" target="_blank">Directions <i class="fa-solid fa-route"></i></a>
               <a href="${resultObj.website}" target="_blank">Website <i class="fa-solid fa-globe"></i></a>
-              <p>Price Level: ${resultObj.price_level || "N/A"}</p>
+              <p>Price Level: ${(renderPrice(resultObj.price_level) || "N/A")}</p>
               <p>Rating: ${resultObj.rating || "N/A"}</p>
               <div class="result-review">
                 <p>${resultObj.reviews[0].text}</p>
-                <i>- ${resultObj.reviews[0].author_name} ${(renderPrice(resultObj.reviews[0].rating))}</i> 
+                <i>- ${resultObj.reviews[0].author_name} ${(renderRating(resultObj.reviews[0].rating))}</i> 
               </div>
               </div>
           </div>
