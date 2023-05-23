@@ -205,18 +205,9 @@ i.fa-solid.fa-map-pin{
 #results{
     display: grid;
     grid-template-columns: 1fr;
-    background-color: white;
-    margin: 1rem 2rem;
+    padding: 3rem 3rem;
     gap: 2rem;
-    /* box-shadow: 8px 1px 6px 2px grey;  */
-    /* border-radius: 8px;
-    text-align: center;
-    max-width: 100%;
-    border-radius: 30px;
-    background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
-               -15px -15px 30px #ffffff; 
-    margin-top: 35px; */
+
 }
 
 .result-card {
@@ -246,7 +237,7 @@ i.fa-solid.fa-map-pin{
 }
 
 #map {
-    height: 400px;
+    height: 500px;
     width: 90%;
     border-radius: 20px;
     box-shadow: 15px 15px 30px var(--smokeshade),
@@ -282,13 +273,13 @@ footer{
 @media(min-width: 60em) {
     #results {
         grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media (min-width: 80em) {
-    #results {
-        grid-template-columns: repeat(4, 1fr);
-    }
 
     .map-search-container {
         flex-flow: row nowrap;

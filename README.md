@@ -42,6 +42,10 @@ Explain how others can contribute to your project. Provide guidelines for submit
 
 Provide contact information for your group members or a designated point of contact. This can include email addresses, GitHub profiles, or any other relevant communication channels.
 
+## Credits
+
+[Brock Herion Blog](https://brockherion.dev/blog/posts/keep-your-async-code-fast-with-promise-all/) - Was used to make the async API call.
+
 ## Acknowledgments
 (Optional) Give credit to any individuals, resources, or libraries that have been helpful in the development of your project.
 
