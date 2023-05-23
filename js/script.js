@@ -74,30 +74,39 @@ function locationFinder(location, tags, radius, min, max) {
         invalidPara.innerHTML = `The error message ${data.status} has occured, please enter a valid location/cusine and try again`;
         return;
       } else {
-        // Added current place where user has searched and added it to local storage
-        recentResults.push(location);
-        // Stores updated results in local storage
-        localStorage.setItem('recentResults', JSON.stringify(recentResults))
+        const name = location
         const placeObj = data.results[0]
         const placeLocation = data.results[0].geometry.location
         // Runs marker command.
         locationMarker(placeObj)
         // Pan's to location 
         map.panTo(placeLocation);
+        // Creates an object to parse into the function.
+        const recentSearchObj = 
+        {
+          name: name,
+          coord: placeLocation,
+          tags: tags,
+          radius: radius,
+          min: min,
+          max: max
+        }
         // Runs the nearbyPlaces func
-        nearbyPlaces(placeLocation, tags, radius, min, max)
+        nearbyPlaces(recentSearchObj)
       }})
 }
 
 // Takes the lat/lng, tags, radius, min and max. Queries these values to get a filtered list of nearby locations that match.
-function nearbyPlaces(input, tags, radius, min, max) {
+function nearbyPlaces(recentSearchObj) {
+
+  // Added current place where user has searched and added it to local storage
+  recentResults.push(recentSearchObj);
+  // Stores updated results in local storage
+  localStorage.setItem('recentResults', JSON.stringify(recentResults))
   // Refreshes the list.
   renderList();
 
-  const lat = input.lat;
-  const lng = input.lng;
-
-  var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${input.lat}%2C${input.lng}&maxprice=${max}&minprice=${min}&radius=${radius}&keyword=${tags}&key=${keyAPI}`;
+  var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${recentSearchObj.coord.lat}%2C${recentSearchObj.coord.lng}&maxprice=${recentSearchObj.max}&minprice=${recentSearchObj.min}&radius=${recentSearchObj.radius}&keyword=${recentSearchObj.tags}&key=${keyAPI}`;
   console.log(apiURL);
   fetch(apiURL)
     .then((response) => response.json())
@@ -251,14 +260,15 @@ function renderList() {
 
   // To add the results and display it with text
   const listElement = document.createElement('li');
-  const name = recentValue[0]
+  const name = recentValue[0].name
 
   listElement.textContent = name;
   listElement.classList.add('button')
   resultList.appendChild(listElement)
 
   listElement.addEventListener('click', () => {
-    console.log("Test")
+    console.log(recentValue)
+    nearbyPlaces(recentValue[0])
   })
 
 }
