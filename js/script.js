@@ -1,5 +1,6 @@
 // Map creation
 let map;
+let arrayID = []
 
 // Map initialiser
 function initMap() {
@@ -42,17 +43,24 @@ function locationMarker(latlng, name) {
   });
 }
 
+
 function locationFinder(location, tags) {
   var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
   console.log(apiURL);
   fetch(apiURL)
-    .then((response) => response.json())
-    .then((data) => {
-      var location = data.results[0].geometry.location;
-      locationMarker(location, map);
-      map.panTo(location);
-      nearbyPlaces(location, tags);
-    });
+      .then(response => response.json())
+      .then(data => {
+
+        if (data.status !== "OK") {
+            return;
+        } else {
+            console.log(data)
+            var location = data.results[0].geometry.location
+            var address = data.results[0].formatted_address
+            locationMarker(location, address)
+            map.panTo(location);
+            nearbyPlaces(location, tags)
+        }})
 }
 
 function nearbyPlaces(input, tags) {
@@ -70,34 +78,23 @@ function nearbyPlaces(input, tags) {
 }
 
 async function fetchDetails(arrayID) {
-  try {
-    const result = await Promise.all([
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-      fetch(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=geometry,name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-      ),
-    ]);
-    const data = await Promise.all(result.map((response) => response.json()));
-    // console.log(data)
-    return data;
-  } catch {
-    throw Error("Failed to load API, please refresh and try again.");
-  }
+    try {
+        const result = await Promise.all([
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[0]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[1]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[2]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[3]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[4]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`),
+            fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${arrayID[5]}&fields=geometry,name,formatted_address,type,rating,price_level,website,photo,reviews,opening_hours&key=${keyAPI}`)
+        ]);
+        const data = await Promise.all(result.map(response => response.json()))
+        // console.log(data)
+        return data;
+    } catch {
+        throw Error("Failed to load API, please refresh and try again.")
+    }
 }
+
 
 // Query Selector for the results tab.
 
@@ -139,70 +136,61 @@ fetchDetails(arrayID).then((data) => {
   for (x = 0; x < results.length; x++) {
     locationMarker(results[x].result.geometry.location, results[x].result.name);
 
-    const cardContent = `
+
+                const cardContent =
+
+                `
                 <h3>${results[x].result.name}</h3>
-                <p>${results[x].result.editorial_summary.overview}</p>
+                <p></p>
+                `
+              
+                let newResult = document.createElement('article')
+                newResult.classList.add('result-card')
+                newResult.innerHTML = cardContent
+        
+                resultsElement.appendChild(newResult)    
+
+            }
+        })
 
 
+    console.log(resultsElement)
+}
 
+// fUNCTION working on local storage
+const storedResults = JSON.parse(localStorage.getItem('recentResults'));
 
-                `;
+if (storedResults != null) {
+  arrayID.push(...storedResults)
+}
 
-    let newResult = document.createElement("article");
-    newResult.classList.add("result-card");
-    newResult.innerHTML = cardContent;
+function saveRecentResults(location) {
 
-    resultsElement.appendChild(newResult);
-  }
-});
+    const location = locationElement.value
+    const index = searchedLocations.indexOf(location)
 
-// for (let i = 0; i < topSix.length; i++) {
+    if (index === -1) {
+      arrayID.push(location);
+      localStorage.setItem('recentResults' , JSON.stringify(arrayID));
+    }
 
-//     let placeID = topSix[i].place_id
-
-//     console.log(placeID)
-
-//     const apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?&place_id=${placeID}&fields=name,formatted_address,type,editorial_summary,reviews,opening_hours&key=${keyAPI}`
-
-//     fetch(apiURL)
-//         .then(response => response.json)
-//         .then(data => {
-
-//             console.log(data)
-//             // const cardContent =
-
-//             // `
-//             // <h3>${places[i].name}</h3>
-//             // <p>Lorem</p>
-//             // `
-//             // let newResult = document.createElement('article')
-//             // newResult.classList.add('result-card')
-//             // newResult.innerHTML = cardContent
-
-//             // resultsElement.appendChild(newResult)
-
-//             console.log(data)
-//             const cardContent =
-
-//             `
-//             <h3>${places[i].name}</h3>
-//             <p>Lorem</p>
-//             `
-//             let newResult = document.createElement('article')
-//             newResult.classList.add('result-card')
-//             newResult.innerHTML = cardContent
-
-//             resultsElement.appendChild(newResult)
-
-//             locationMarker(places[i].geometry.location, data.name)
-// //         })
-
-// }
-console.log(resultsElement);
+}
 
 // Query Selectors
 const locationElement = document.querySelector("#location");
 const keywordsElement = document.querySelector("#cuisine");
+
+function locationGet(event) {
+    event.preventDefault()
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((data) => {
+            console.log(data)
+            locationElement.value = `${data.coords.latitude} ${data.coords.longitude} `
+        })
+    } else {
+
+    }
+}
 
 function locationSearch(event) {
   event.preventDefault();
