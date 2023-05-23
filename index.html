@@ -16,27 +16,29 @@
     <h1>Scran<span class="header-span">Hub</span></h1>
   </header>      
   <main>
-    <section class="map-search-container">
-      <!-- Leave New Search in please -->
-      <form onsubmit="locationSearch(event)">
-        <h2>Find Nearby Restaurants</h2>
-        <label for="location">Location:</label>
-        <div id="location-div">
-          <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><i class="fa-solid fa-location-crosshairs" onclick="locationGet(event)"></i><br>
-        </div>
-        <label for="cuisine">Cuisine:</label>
-        <input type="text" id="cuisine" name="cuisine" placeholder="e.g. chinese, indian....">
-        <br>
-        <p id="error-msg"></p>
-        <br>      
-        <button type="submit">Search</button>
-        <br>
-        <ul>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, unde?</li>
-        </ul>
-      </form>
-        <div id="map"></div>
+    <section class="background-wrapper">
+      <section class="map-search-container">
+        <!-- Leave New Search in please -->
+        <form onsubmit="locationSearch(event)">
+          <h2>Find Nearby Restaurants</h2>
+          <label for="location">Location:</label>
+          <div id="location-div">
+            <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><i class="fa-solid fa-location-crosshairs" onclick="locationGet(event)"></i><br>
+          </div>
+          <label for="cuisine">Cuisine:</label>
+          <input type="text" id="cuisine" name="cuisine" placeholder="e.g. chinese, indian....">
+          <br>
+          <p id="error-msg"></p>
+          <br>      
+          <button type="submit">Search</button>
+          <br>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, unde?</li>
+          </ul>
+        </form>
+          <div id="map"></div>
       </section>
+    </section>
     <section id="results-container">
       <h3>Places near you<span><i class="fa-solid fa-map-pin"></i></span></h3>
       <section id="results"> 

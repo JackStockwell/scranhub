@@ -15,7 +15,17 @@ function initMap() {
 }
 
 function locationMarker(placeObj) {
+
   const myLatLng = placeObj.geometry.location;
+  let address = placeObj.formatted_address;
+  let name = placeObj.name
+
+  // Used when a standard placeObj isn't parsed due to Geolocation.
+  if (!name) {
+    name = "Current location"
+  }
+
+  console.log(address)
 
   const marker = new google.maps.Marker({
     position: myLatLng,
@@ -24,8 +34,8 @@ function locationMarker(placeObj) {
 
   const contentInfo = `
     <div id="content">
-        <h3>${placeObj.name}</h3>
-        <p>${placeObj.formatted_address}</p>
+        <h3>${name}</h3>
+        <p>${address}</p>
     </div>
     `;
   const infoWindow = new google.maps.InfoWindow({
@@ -57,6 +67,7 @@ function locationFinder(location, tags) {
         } else {
             const placeObj = data.results[0]
             const location = data.results[0].geometry.location
+            console.log(placeObj)
             locationMarker(placeObj)
             map.panTo(location);
             nearbyPlaces(location, tags)
@@ -124,7 +135,6 @@ async function renderData(locationObject) {
         arrayID.push(placeID)
     }
 
-    console.log(arrayID)
     fetchDetails(arrayID)
         .then(data => {
             // Local places infomation.
@@ -133,7 +143,7 @@ async function renderData(locationObject) {
 
             for (x = 0; x < results.length; x++) {
               const resultObj = results[x].result
-              console.log(resultObj)
+              // console.log(resultObj)
               locationMarker(resultObj)
 
               const cardContent =
@@ -189,7 +199,7 @@ function locationGet(event) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((data) => {
             console.log(data)
-            locationElement.value = `${data.coords.latitude} ${data.coords.longitude} `
+            locationElement.value = `${data.coords.latitude} ${data.coords.longitude}`
         })
     } else {
 

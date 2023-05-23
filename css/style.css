@@ -163,16 +163,23 @@ nav ul li a{
     flex-wrap: wrap;
 } */
 
+.background-wrapper {
+    background: center / cover no-repeat url(../assets/background/foodbackground.jpeg);
+    width: 100%;
+}
+
 .map-search-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    padding: 2rem;
     max-width: 1400px;
-    margin: 2rem auto;
+    margin: 0 auto;
     gap: 2rem;
-    background: url('./food\ background.jpeg') no-repeat center fixed cover;
+    background: transparent;
+    /* background: center / cover no-repeat url(../assets/background/foodbackground.jpeg); */
 }
 
 h2{
@@ -182,7 +189,7 @@ h2{
 }
 
 #results-container {
-    margin: 1rem 0;
+    padding: 0 0 2rem 0;
     background: white;
     
 }
