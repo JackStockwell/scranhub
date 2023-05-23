@@ -18,6 +18,7 @@
     --greendark: #469469;
     --greenlight: #27b367;
     --primary: #3c6e71;
+    --secondary: #213c5c;
     --smokeshade: #bebebe;
 }
 
@@ -40,7 +41,7 @@ header h1{
     font-family: 'Noto Serif Bengali', serif;
     font-size: 40px;
     text-align: center;
-    color: var(--greendark);
+    color: var(--greenlight);
     /* box-shadow: 15px 15px 30px #bebebe,
     -15px -15px 30px #ffffff; */
 
@@ -108,9 +109,9 @@ input{
 
 
 button{
-    background-color: rgb(70, 148, 105);
+    background-color: var(--greendark);
     color: rgb(254, 254, 254);
-    border-radius: 30em;
+    border-radius: 7px;
     padding: 0.5rem;
     font-family: inherit;
     border: none;
@@ -120,7 +121,7 @@ button{
 }
 
 button:hover{
-    background-color: rgb(39 179 103);
+    background-color: var(--greenlight);
 }
 
 button:active{
@@ -239,6 +240,8 @@ i.fa-solid.fa-map-pin{
     text-transform: uppercase;
 }
 
+/* RESULT CARDS CONTENT */
+
 .result-content {
     display: grid;
     min-width: 0;
@@ -252,6 +255,19 @@ i.fa-solid.fa-map-pin{
     aspect-ratio: 3/2;
     max-height: 400px;
     object-fit: cover;
+}
+
+.result-card a {
+    text-transform: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 7px;
+    width: 100%;
+    background: var(--greendark);
+}
+
+.result-card a:hover {
+    background: var(--greenlight);
 }
 
 .result-content-info {
@@ -342,10 +358,4 @@ footer{
         width: auto;
     }
 }
-
-/* @media (max-width: 480px) {
-    form {
-        width: 750px;
-    }
-} */
 

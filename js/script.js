@@ -169,10 +169,10 @@ async function renderData(locationObject) {
           <div class="result-content">
             <img class="result-img" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${resultObj.photos[0].photo_reference}&key=${keyAPI}">
             <div class="result-content-info">
-              <a href="https://www.google.com/maps/dir/?api=1&origin=${locationElement.value}&destination=${resultObj.formatted_address}&destination_place_id=${resultObj.place_id}">${resultObj.formatted_address} target="_blank"</a>
+              <a href="https://www.google.com/maps/dir/?api=1&origin=${locationElement.value}&destination=${resultObj.formatted_address}&destination_place_id=${resultObj.place_id}" target="_blank">Directions <i class="fa-solid fa-route"></i></a>
+              <a href="${resultObj.website}" target="_blank">Website <i class="fa-solid fa-globe"></i></a>
               <p>Price Level: ${resultObj.price_level || "N/A"}</p>
               <p>Rating: ${resultObj.rating || "N/A"}</p>
-              <a href="${resultObj.website}" target="_blank">Website</a>
               <div class="result-review">
                 <p>${resultObj.reviews[0].text}</p>
                 <i>- ${resultObj.reviews[0].author_name} ${(renderPrice(resultObj.reviews[0].rating))}</i> 
