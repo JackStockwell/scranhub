@@ -61,14 +61,13 @@ header h1{
 form{
     display: grid;
     width: 90%;
-    line-height: 30px;
-    padding: 3rem;
+    gap: 1rem;
+    padding: 2rem;
     padding-bottom: 4rem; 
     border-radius: 2rem;
     background: #e0e0e0;
     box-shadow: 15px 15px 30px var(--smokeshade),
                -15px -15px 30px #ffffff;
-    height: 400px;
 }
 
 #location-div {
@@ -90,7 +89,7 @@ label{
     
 }
 
-input{
+input {
     margin: 5px 0;
     padding: 3px;
     display: flex;
@@ -100,6 +99,24 @@ input{
     background-color: #f9f6f6cf;
 }
 
+/* ERROR MSG */
+
+#error-msg {
+    text-align: center;
+}
+
+
+/* RADIUS */
+
+.radius {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.radius input {
+    width: 100%;
+}
 
 #cuisine{
     border-radius: 5px;
@@ -107,6 +124,23 @@ input{
     background-color: #f9f6f6cf;
 }
 
+/* RADIUS & PRICE RANGE */
+
+.radius, .price-range {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.radius input {
+    width: 100%;
+}
+
+/* PRICE RANGE */
+
+.price-range {
+    justify-content: center;
+}
 
 button{
     background-color: var(--greendark);

@@ -27,11 +27,29 @@
           </div>
           <label for="cuisine">Cuisine:</label>
           <input type="text" id="cuisine" name="cuisine" placeholder="e.g. chinese, indian....">
-          <br>
           <p id="error-msg"></p>
-          <br>      
+          <div class="radius">
+            <h3>Distance</h3>
+            <input type="range" min="1000" max="5000" value="1" step="500" class="slider" id="radius">
+            <p class="range-update">Radius (km)</p>
+          </div>
+          <div class="price-range">
+            <label for="price-min">Min price:</label>
+            <select id="price-min">
+              <option value="1" selected>£</option>
+              <option value="2">££</option>
+              <option value="3">£££</option>
+              <option value="4">££££</option>
+            </select>
+            <label for="price-max">Max price:</label>
+            <select id="price-max">
+              <option value="1">£</option>
+              <option value="2">££</option>
+              <option value="3" selected>£££</option>
+              <option value="4">££££</option>
+            </select>
+          </div>   
           <button type="submit">Search</button>
-          <br>
           <ul>
             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, unde?</li>
           </ul>

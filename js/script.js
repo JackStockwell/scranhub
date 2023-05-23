@@ -25,8 +25,6 @@ function locationMarker(placeObj) {
     name = "Current location"
   }
 
-  console.log(address)
-
   const marker = new google.maps.Marker({
     position: myLatLng,
     title: placeObj.name,
@@ -53,8 +51,7 @@ function locationMarker(placeObj) {
   });
 }
 
-
-function locationFinder(location, tags) {
+function locationFinder(location, tags, radius, min, max) {
   var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
   console.log(apiURL);
   fetch(apiURL)
@@ -70,16 +67,17 @@ function locationFinder(location, tags) {
             console.log(placeObj)
             locationMarker(placeObj)
             map.panTo(location);
-            nearbyPlaces(location, tags)
+            nearbyPlaces(location, tags, radius, min, max)
         }})
 }
 
-function nearbyPlaces(input, tags) {
+function nearbyPlaces(input, tags, radius, min, max) {
   const lat = input.lat;
   const lng = input.lng;
-  var keywords = tags;
+  console.log(min)
+  console.log(max)
 
-  var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${input.lat}%2C${input.lng}&radius=1500&keyword=${keywords}&key=${keyAPI}`;
+  var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${input.lat}%2C${input.lng}&maxprice=${max}&minprice=${min}&radius=${radius}&keyword=${tags}&key=${keyAPI}`;
   console.log(apiURL);
   fetch(apiURL)
     .then((response) => response.json())
@@ -205,6 +203,9 @@ async function renderData(locationObject) {
 // Query Selectors
 const locationElement = document.querySelector("#location");
 const keywordsElement = document.querySelector("#cuisine");
+const radiusElement = document.querySelector('#radius')
+const minPriceElement = document.querySelector('#price-min')
+const maxPriceElement = document.querySelector('#price-max')
 const invalidPara = document.querySelector("#error-msg");
 
 function locationGet(event) {
@@ -219,19 +220,37 @@ function locationGet(event) {
     }
 }
 
+// Slider
+
+const output = document.querySelector(".range-update");
+
+output.innerHTML = radiusElement.value
+
+radiusElement.oninput = function() {
+  output.innerHTML = this.value
+}
+
+output.innerHTML = `${radiusElement.value}m`;
+
+// Grabs the location specified to ensuring all fields have been inputted 
 function locationSearch(event) {
   event.preventDefault();
-  var location = locationElement.value;
-  var tags = keywordsElement.value;
-  console.log(tags);
-  if (!location || !tags) {
+  // Reloads the map.
+  initMap();
+
+  const location = locationElement.value;
+  const tags = keywordsElement.value;
+  const radius = radiusElement.value;
+  const minPrice = minPriceElement.value;
+  const maxPrice = maxPriceElement.value;
+
+  console.log(radius);
+  if (!location || !tags || !radius) {
     invalidPara.innerHTML = "Please enter a location or search term!";
     setTimeout(() => {
       invalidPara.innerHTML = "";
     }, 3000);
   } else {
-    locationFinder(location, tags);
+    locationFinder(location, tags, radius, minPrice, maxPrice);
   }
 }
-
-window.initMap = initMap;
