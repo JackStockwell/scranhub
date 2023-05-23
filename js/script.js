@@ -55,8 +55,8 @@ function locationMarker(placeObj) {
 
 
 function locationFinder(location, tags) {
-  var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`
-  console.log(apiURL)
+  var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
+  console.log(apiURL);
   fetch(apiURL)
       .then(response => response.json())
       .then(data => {
@@ -121,7 +121,8 @@ async function fetchDetails(arrayID) {
 const resultsElement = document.getElementById("results");
 
 async function renderData(locationObject) {
-    // Clears previous cards if there are any.
+
+  // Clears previous cards if there are any.
     resultsElement.innerHTML = ""
 
     console.log(locationObject)
@@ -136,37 +137,31 @@ async function renderData(locationObject) {
     }
 
     fetchDetails(arrayID)
-        .then(data => {
-            // Local places infomation.
-            const results = data
-            console.log(results)
+      .then(data => {
+        // Local places infomation.
+        const results = data
+        console.log(results);
 
-            for (x = 0; x < results.length; x++) {
-              const resultObj = results[x].result
-              // console.log(resultObj)
-              locationMarker(resultObj)
+        for (x = 0; x < results.length; x++) {
+          const resultObj = results[x].result
+          // console.log(resultObj)
+          locationMarker(resultObj);
+        const cardContent =
+          `
+          <h3>${place.name}</h1>
+          <p>${place.vicinity}</p>
+          <p>Price Level: ${place.price_level || "N/A"}</p>
+          <p>Rating: ${place.rating || "N/A"}</p>
+          <a href="${place.website}" target="_blank">Website</a>
+          `
 
-              const cardContent =
+          let newResult = document.createElement('article')
+          newResult.classList.add('result-card')
+          newResult.innerHTML = cardContent
 
-              `
-              <h3>${results[x].result.name}</h3>
-              <p></p>
-
-                
-
-
-              `
-            
-              let newResult = document.createElement('article')
-              newResult.classList.add('result-card')
-              newResult.innerHTML = cardContent
-      
-              resultsElement.appendChild(newResult)    
-
-            }
-        })
-
-    console.log(resultsElement)
+          resultsElement.appendChild(newResult)    
+      }
+    })
 }
 
 // fUNCTION working on local storage
@@ -183,7 +178,6 @@ function saveRecentResults(location) {
 
     if (index === -1) {
       arrayID.push(location);
-
       localStorage.setItem('recentResults' , JSON.stringify(arrayID));
     }
 
