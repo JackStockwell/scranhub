@@ -45,8 +45,8 @@ function locationMarker(latlng, name) {
 
 
 function locationFinder(location, tags) {
-  var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`
-  console.log(apiURL)
+  var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
+  console.log(apiURL);
   fetch(apiURL)
       .then(response => response.json())
       .then(data => {
@@ -101,39 +101,47 @@ async function fetchDetails(arrayID) {
 const resultsElement = document.getElementById("results");
 
 async function renderData(locationObject) {
-    // Clears previous cards if there are any.
-    resultsElement.innerHTML = ""
+  // Clears previous cards if there are any.
+  resultsElement.innerHTML = "";
 
-    console.log(locationObject)
+  console.log(locationObject);
 
-    let arrayID = []
+  let arrayID = [];
 
-    const topSix = locationObject.results.slice(0, 6)
+  const topSix = locationObject.results.slice(0, 6);
 
-    for (let i = 0; i < topSix.length; i++) {
-        let placeID = topSix[i].place_id
-        arrayID.push(placeID)
-    }
+  for (let i = 0; i < topSix.length; i++) {
+    const place = topSix[i];
+    const cardContent = `
+        <h1>${place.name}</h1>
+        <p>${place.vicinity}</p>
+        <p>Price Level: ${place.price_level || "N/A"}</p>
+        <p>Rating: ${place.rating || "N/A"}</p>
+        <a href="${place.website}" target="_blank">Website</a>
+      `;
+    let newResult = document.createElement("article");
+    newResult.classList.add("result-card");
+    newResult.innerHTML = cardContent;
+    resultsElement.appendChild(newResult);
 
-    console.log(arrayID)
-    fetchDetails(arrayID)
-        .then(data => {
-            // Local places infomation.
-            const results = data
-            console.log(results)
+    arrayID.push(place.place_id);
+  }
+}
+console.log(arrayID);
+fetchDetails(arrayID).then((data) => {
+  // Local places infomation.
+  const results = data;
+  console.log(results);
 
-            for (x = 0; x < results.length; x++) {
-                locationMarker(results[x].result.geometry.location, results[x].result.name)
+  for (x = 0; x < results.length; x++) {
+    locationMarker(results[x].result.geometry.location, results[x].result.name);
+
 
                 const cardContent =
 
                 `
                 <h3>${results[x].result.name}</h3>
                 <p></p>
-
-                 
-
-
                 `
               
                 let newResult = document.createElement('article')
@@ -144,6 +152,7 @@ async function renderData(locationObject) {
 
             }
         })
+
 
     console.log(resultsElement)
 }
@@ -162,7 +171,6 @@ function saveRecentResults(location) {
 
     if (index === -1) {
       arrayID.push(location);
-
       localStorage.setItem('recentResults' , JSON.stringify(arrayID));
     }
 
