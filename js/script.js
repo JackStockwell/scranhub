@@ -161,8 +161,8 @@ async function renderData(locationObject) {
       const storedResults = JSON.parse(localStorage.getItem('recentResults')) || []; // This allows to get the results and store it within local storage
 
       for (let x = 0; x < results.length; x++) {
-        const place = results[x].result;
-        locationMarker(place);
+        const resultObj = results[x].result;
+        locationMarker(resultObj);
         const cardContent =
           `
           <h3>${resultObj.name}</h3>
@@ -181,7 +181,7 @@ async function renderData(locationObject) {
           </div>
           `
 
-          storedResults.push(place); // Added current place where user has searched and added it to local storage
+          storedResults.push(resultObj); // Added current place where user has searched and added it to local storage
 
           let newResult = document.createElement('article');
           newResult.classList.add('result-card');
