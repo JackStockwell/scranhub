@@ -36,6 +36,8 @@ You will need to be set up with temp acces from https://cors-anywhere.herokuapp.
 
 To use the application head to [here](!https://jackstockwell.github.io/scranhub/). This will direct you to the homepage where you will be presented with a user-interface. Fill in the search box area with the required infomation that you are prompted with. Once done, hit search and your results will load below, they include directions via Google Maps, as well as some additional infomation like a picture, their rating etc.
 
+The pages for ScranHub can be found [here](https://jackstockwell.github.io/scranhub/)
+
 ## Features
 
 Key Features: 
