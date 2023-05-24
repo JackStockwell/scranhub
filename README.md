@@ -1,58 +1,80 @@
-# code-ninja-hq
+# ScranHub
 
-Something magical...
+<img style="margin-left: auto; width: 350px" src="./assets/icon/scranhub-icon.png"/>
 
-# Project Title - ScranHub
+A Food App involving APIs and an interactive front-end application.
 
-Team Project involving APIs and an idea based around an interactive front-end application.
+---
 
-## Project Description/Overview
+## Description
 
-Provide a clear and concise overview of your project. Explain its purpose, goals, and any relevant background information. Include the names of the group members and their roles in the project.
+Our idea was to build a food locator application with the purpose to allow users to search for local food services or restaurants within a specified distance. They would then get results depending on their key words they used to search, the distance inputted and the price range; results show business name, price range, rating and even a relevant review. It utilises a clean and simple looking UI to deliver local food areas directly to the user.
 
-- Our idea was to build a food locator application with the purpose to allow users to search for local food services or restaurants within a specified distance. They would then get results depending on their key words they used to search. 
-So to start we broke down the project into different steps to delagate the work between the five group members. Myra, Jack, Anthony, Mohamed and Louis
+The motivation behind this project was to work for the first time in a team handling different parts of the project, from design and branding to logic in JavaScript; we also wanted to deepend our knowledge of third-party APIs. The reason we chose the Food App was we wanted to use the Google API and finding food while out and about is common problem many of us run into, one that Google Maps does show its UI is particularly user friendly and those less experienced with Technology may struggle.
+
+We learnt how to work and collaborate as a team, including solving issues from github conflicts to API requet errors. All while continuing our knowledge in various fields we were in and learning tips and tricks from eacher throughout.
+
+## Screenshots
+
+![Full image of the site with responses](./assets/screenshots/fullscreenshot.jpg)
+
+![GIF of the website in action](./assets/screenshots/scranhub-gif.gif)
 
 ## Installation
 
-Outline the steps required to install and set up your project. Include any dependencies that need to be installed and any additional configuration or setup instructions.
+In order to use this yourself, you will need your own Google API Key which can be created [here](https://console.cloud.google.com/project/_/google/maps-apis/), a keys.js file must be created a nested inside the js folder.
+
+Follow syntax will need to placed in keys.js in order for it work, with your very own API key parsed.
+
+```javascript
+const keyAPI = "YOUR_API_KEY_HERE"
+```
+
+You will need to be set up with temp acces from https://cors-anywhere.herokuapp.com/
 
 ## Usage
 
-Provide instructions on how to use your project. This can include command-line commands, GUI instructions, or any other relevant information. You can also provide examples or screenshots to demonstrate the project's functionality.
-
-- As a user I want to search my area for local food services.
-
-- To use the application the user will search for the url 'ScranHub'. This will direct them to the homepage where they will be presented with the user-interface. They will then be prompted to input key words into the search box, which is easily noticeable on the page. Once searched keywords they will be presented with up to six results depending on the keywords entered.
+To use the application head to [here](!https://jackstockwell.github.io/scranhub/). This will direct you to the homepage where you will be presented with a user-interface. Fill in the search box area with the required infomation that you are prompted with. Once done, hit search and your results will load below, they include directions via Google Maps, as well as some additional infomation like a picture, their rating etc.
 
 ## Features
 
-List and describe the key features of your project. Highlight any notable functionalities or unique aspects that make your project stand out.
+Key Features: 
 
-- Some of the key features we added are; nearby search, geo loction and places searched using google API.
-
-## Contributing
-
-Explain how others can contribute to your project. Provide guidelines for submitting bug reports, feature requests, or pull requests. Include information on how to set up the development environment and any coding standards or conventions that contributors should follow.
+- Google Maps API: Able to search for locations using Geolocate, query a nearby search using a Lat and Lon co-ordinate.
+- Google Places API: Able to find details when given a place_id or formatted address. These details are used populate the cards with infomation.
+- Geolocation via the browser.
+- Fontawesome: A CSS API used to get icons to populate the page with.
 
 ## License
 
+N/A
 
 ## Contact Information
 
-Provide contact information for your group members or a designated point of contact. This can include email addresses, GitHub profiles, or any other relevant communication channels.
+We can be reached via GitHub.
 
-## Credits
+## Acknowledgments/Credits
 
 [Brock Herion Blog](https://brockherion.dev/blog/posts/keep-your-async-code-fast-with-promise-all/) - Was used to make the async API call.
 
-## Acknowledgments
-(Optional) Give credit to any individuals, resources, or libraries that have been helpful in the development of your project.
+[Fontawesome Docs](https://fontawesome.com/docs) - The Fontawesome documentation.
 
-## Troubleshooting
-(Optional) Provide troubleshooting tips or common issues that users may encounter, along with their solutions.
+[Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript) - The Documentation for the Google Maps API. Used extensively to gather infomation.
 
-## Frequently Asked Questions (FAQ)
-(Optional) Compile a list of frequently asked questions and their answers to help users find quick solutions to common queries.
+[Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview) - Used to query the infomation the user describes.
 
-Feel free to customize the template based on your specific project requirements. Remember, a good README file provides clear instructions, highlights important information, and helps users understand and contribute to your project effectively.
+[Mozilla MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Used for researching JavaScript, CSS and HTML syntax.
+
+[CORS Anywhere](https://cors-anywhere.herokuapp.com/) - Allowed us to use the API.
+
+## Contributors
+
+[Myra-k](https://github.com/Myra-k)
+
+[dirie93](https://github.com/dirie93)
+
+[AJosueBN](https://github.com/AJosueBN)
+
+[LouisJsummers](https://github.com/LouisJsummers)
+
+[JackStockwell](https://github.com/JackStockwell)

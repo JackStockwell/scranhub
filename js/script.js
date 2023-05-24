@@ -226,8 +226,7 @@ async function renderData(locationObject) {
       newResult.innerHTML = cardContent;
       resultsElement.appendChild(newResult)
     }
-
-
+    resultsElement.scrollIntoView({behavior: "instant"})
   });
 }
 

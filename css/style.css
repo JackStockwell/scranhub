@@ -184,6 +184,18 @@ button:hover,
     background-color: var(--greenlight);
 }
 
+/* BACK TO TOP BUTTON */
+
+.top-button {
+    /* display: none; */
+    position: fixed;
+    float: right;
+    bottom: 10px;
+    right: 10px;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
 /* RECENT SEARCH LIST */
 
 .result-list {
