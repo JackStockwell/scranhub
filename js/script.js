@@ -64,8 +64,9 @@ function locationMarker(placeObj) {
 // Searches for the location given a string and returns a lat and lng of the best matched area.
 // Also parses the tags, radius, min, max to be used for the function run later.
 function locationFinder(location, tags, radius, min, max) {
+  // API URL
   var apiURL = `https://maps.googleapis.com/maps/api/geocode/json?&address=${location}&key=${keyAPI}`;
-  console.log(apiURL);
+  // API FETCH
   fetch(apiURL)
     .then(response => response.json())
     .then(data => {
@@ -106,7 +107,6 @@ function nearbyPlaces(recentSearchObj) {
   // Refreshes the list.
 
   var apiURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${recentSearchObj.coord.lat}%2C${recentSearchObj.coord.lng}&maxprice=${recentSearchObj.max}&minprice=${recentSearchObj.min}&radius=${recentSearchObj.radius}&keyword=${recentSearchObj.tags}&key=${keyAPI}`;
-  console.log(apiURL);
   fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
@@ -187,7 +187,6 @@ async function renderData(locationObject) {
     .then(data => {
     // Local places infomation.
     const results = data
-    console.log(results)
     // This allows to get the results and store it within local storage
     const storedResults = JSON.parse(localStorage.getItem('recentResults')) || [];
     
@@ -220,7 +219,6 @@ async function renderData(locationObject) {
             </div>
         </div>
         `
-      console.log(cardContent)
       let newResult = document.createElement('article');
       newResult.classList.add('result-card');
       newResult.innerHTML = cardContent;
@@ -253,7 +251,6 @@ function renderList() {
   resultList.innerHTML =""
   // Gets the latest result from the array.
   let recentValue = recentResults.splice(-1)
-  console.log(recentValue)
   // To add the results and display it with text
   const listElement = document.createElement('li');
   const name = recentValue[0].name
@@ -263,7 +260,6 @@ function renderList() {
   resultList.appendChild(listElement)
 
   listElement.addEventListener('click', () => {
-    console.log(recentValue)
     nearbyPlaces(recentValue[0])
   })
 
@@ -281,7 +277,6 @@ function locationGet(event) {
     event.preventDefault()
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((data) => {
-            console.log(data)
             locationElement.value = `${data.coords.latitude} ${data.coords.longitude}`
         })
     } else {
@@ -314,7 +309,6 @@ function locationSearch(event) {
   const minPrice = minPriceElement.value;
   const maxPrice = maxPriceElement.value;
 
-  console.log(radius);
   if (!location || !tags) {
     invalidPara.innerHTML = "Please enter a location or search term!";
     setTimeout(() => {
