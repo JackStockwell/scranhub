@@ -22,7 +22,7 @@
       <section class="map-search-container">
         <!-- Leave New Search in please -->
         <form onsubmit="locationSearch(event)">
-          <h2>Find Nearby Restaurants</h2>
+          <h2>Find Nearby Restaurants & Takeaways</h2>
           <label for="location">Location:</label>
           <div id="location-div">
             <input type="text" id="location" name="location" placeholder="Enter your area/postcode"><i class="fa-solid fa-location-crosshairs" onclick="locationGet(event)"></i><br>
@@ -31,9 +31,9 @@
           <input type="text" id="cuisine" name="cuisine" placeholder="e.g. chinese, indian....">
           <p id="error-msg"></p>
           <div class="radius">
-            <h3>Distance</h3>
+            <h3>Distance(m)</h3>
             <input type="range" min="1000" max="5000" value="1" step="500" class="slider" id="radius">
-            <p class="range-update">Radius (km)</p>
+            <p class="range-update"></p>
           </div>
           <div class="price-range">
             <label for="price-min">Min price:</label>
@@ -66,7 +66,7 @@
       </section>
     </main>
     <footer>
-      <p>2023 Food Locator App</p>
+      <p>2023 ScranHub©</p>
     </footer>
     <script src="./js/keys.js"></script>
     <script>
