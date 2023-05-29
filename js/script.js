@@ -225,6 +225,7 @@ async function renderData(locationObject) {
       resultsElement.appendChild(newResult)
     }
     resultsElement.scrollIntoView({behavior: "instant"})
+    renderList();
   });
 }
 
@@ -298,8 +299,6 @@ output.innerHTML = `${radiusElement.value}m`;
 // Grabs the location specified to ensuring all fields have been inputted 
 function locationSearch(event) {
   event.preventDefault();
-  // Renders the list.
-  renderList()
   // Reloads the map.
   initMap();
   // Retrieves the values needed to conduct the search.
